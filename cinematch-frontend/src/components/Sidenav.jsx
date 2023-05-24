@@ -54,9 +54,7 @@ const Sidenav = () => {
           </a>
         </li>
       </ul>
-      <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large">
-        <i className="material-icons">menu</i>
-      </a>
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </>
   );
 };
