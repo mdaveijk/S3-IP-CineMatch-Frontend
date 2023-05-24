@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import M from 'materialize-css';
+import { Link } from 'react-router-dom';
 
 const Sidenav = () => {
   useEffect(() => {
@@ -12,30 +13,35 @@ const Sidenav = () => {
     <>
       <ul id="slide-out" className="sidenav sidenav-fixed">
         <li>
-          <div className="user-view">
+          <div className="user-content">
             <div className="background user-content">
               <img src="images/office.jpg" alt="Office Background" />
             </div>
-            <a href="#user">
+            <Link to="/user">
               <img className="circle" src="images/yuna.jpg" alt="User Avatar" />
-            </a>
-            <a href="#name">
-              <span className="white-text name">John Doe</span>
-            </a>
-            <a href="#email">
-              <span className="white-text email">jdandturk@gmail.com</span>
-            </a>
+            </Link>
+            <Link to="/name">
+              <span className="white-text name">YOUR NAME</span>
+            </Link>
+            <button>
+              <span className="find-matches btn">Find matches</span>
+            </button>
           </div>
         </li>
+        <div className="menu-content">
         <li>
-          <a href="#!">
-            <i className="material-icons" style={{ color: 'red' }}>tram</i>
-            First Link With Icon
-          </a>
+          <Link to="/discover">
+            <i className="material-icons" style={{ color: 'white' }}>people</i>
+            Discover
+          </Link>
         </li>
         <li>
-          <a href="#!">Second Link</a>
+          <Link to="/rankedlist">
+            <i className="material-icons" style={{ color: 'white' }}>favorite</i>
+            Rankedlist
+          </Link>
         </li>
+        </div>
         <li>
           <div className="divider"></div>
         </li>
@@ -48,7 +54,7 @@ const Sidenav = () => {
           </a>
         </li>
       </ul>
-      <a href="#" data-target="slide-out" className="sidenav-trigger">
+      <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large">
         <i className="material-icons">menu</i>
       </a>
     </>
