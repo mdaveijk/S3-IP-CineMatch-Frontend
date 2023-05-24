@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import './App.css'
 import MatchComponent from './components/matchComponent'
+import Home from './views/Home'
+import Sidenav from './components/Sidenav'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="container">
-      <MatchComponent />
+      {/* <MatchComponent /> */}
+      < Home />
+      < Sidenav />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import UserMatchingApiService from '../api/UserMatchingApiService';
+import UserMatchingApiService from '../utils/UserMatchingApiService';
 
 function MatchComponent() {
   const [matches, setMatches] = useState([]);
