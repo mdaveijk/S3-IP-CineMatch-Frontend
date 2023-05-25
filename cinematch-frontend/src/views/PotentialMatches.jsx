@@ -1,33 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PotentialMatchCard from './../components/PotentialMatchCard';
-import axios from 'axios';
-
-//find the corresponding username
-function getUserName(userNames, userId) {
-  const userName = userNames.find((userName) => userName.userId === userId);
-  return userName ? userName.displayName : '';
-}
+import { getUsersPreferences } from '../utils/usersWithPreferencesApi';
 
 export default function PotentialMatches() {
-  const [userPreferences, setUserPreferences] = useState([]);
-  const [userNames, setUserNames] = useState([]);
-
-  const getUserPreferences = async () => {
-    const { data } = await axios.get("http://localhost:8082/api/userpreferences");
-    const userPreferences = data;
-    setUserPreferences(userPreferences);
-  };
-
-  const getUserNames = async () => {
-    const { data } = await axios.get("http://localhost:8081/api/users");
-    const userNames = data;
-    setUserNames(userNames);
-  };
-
-  useEffect(() => {
-    getUserPreferences();
-    getUserNames();
-  }, []);
+  const userPreferences = getUsersPreferences();
 
   return (
     <>
@@ -38,7 +14,7 @@ export default function PotentialMatches() {
             <PotentialMatchCard
               key={key}
               usermovie={userPref.preferences}
-              username={getUserName(userNames, userPref.userId)} // Call the getUserName function
+              username={userPref.username}
               location={userPref.location}
             />
           ))}
