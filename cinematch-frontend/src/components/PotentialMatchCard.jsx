@@ -12,7 +12,7 @@ function PotentialMatchCard(props) {
                         <span className="card-title">{props.username}</span>
                     </div>
                     <div className="card-content">
-                        <p>{props.userlocation}</p>
+                        <p>{props.location}</p>
                     </div>
                     <div className="card-action">
                         <button> Show interest </button>
