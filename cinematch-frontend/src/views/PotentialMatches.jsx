@@ -16,6 +16,7 @@ export default function PotentialMatches() {
               usermovie={userPref.preferences}
               username={userPref.username}
               location={userPref.location}
+              picture={userPref.profilePic}
             />
           ))}
       </div>
