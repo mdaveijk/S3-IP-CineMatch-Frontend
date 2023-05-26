@@ -1,17 +1,37 @@
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { getUsers } from './usersApi';
 
-export default class usersWithPreferencesApi {
-  async GetAll() {
-    try {
-      const response = await axios.get('http://localhost:8082/api/userpreferences');
-      if (response.status === 200) {
-        return response.data;
-      } else {
-        throw new Error(`Request failed with status code ${response.status}`);
+export function getUsersPreferences() {
+
+  const [userPreferences, setUserPreferences] = useState([]);
+  const userNames = getUsers(); // Get the userNames 
+
+  useEffect(() => {
+    async function getUsersPreferences() {
+      try {
+        const { data } = await axios.get("http://localhost:8082/api/userpreferences");
+        setUserPreferences(data);
+      } catch (error) {
+        //handle errors
       }
-    } catch (error) {
-      console.error(error);
-      throw error;
     }
-  }
+
+    getUsersPreferences();
+  }, []);
+
+  const getUserPreferencesWithName = () => {
+    // find the corresponding username
+    function getUserName(userNames, userId) {
+      const userName = userNames.find((userName) => userName.userId === userId);
+      return userName ? userName.displayName : '';
+    }
+
+    return userPreferences.map((userPref) => ({
+      ...userPref,
+      username: getUserName(userNames, userPref.userId),
+    }));
+  };
+
+  return getUserPreferencesWithName();
 }

@@ -30,7 +30,7 @@ const Sidenav = () => {
         </li>
         <div className="menu-content">
         <li>
-          <Link to="/discover">
+          <Link to="/potentialmatches">
             <i className="material-icons" style={{ color: 'white' }}>people</i>
             Discover
           </Link>
