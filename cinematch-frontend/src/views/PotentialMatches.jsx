@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PotentialMatchCard from './../components/PotentialMatchCard';
 import { getUsersPreferences } from '../utils/usersWithPreferencesApi';
 
