@@ -1,4 +1,30 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
 export default function UserPreferences() {
+  const [movie, setMovie] = useState('');
+  const [genre, setGenre] = useState('');
+  const [location, setLocation] = useState('');
+
+  const submitPreferences = async (event) => {
+    event.preventDefault();
+
+    const preferences = {
+      userId: 2,
+      preferences: [movie, genre],
+      // movie: movie,
+      // genre: genre,
+      location: location
+    };
+
+    try {
+      await axios.post("http://localhost:8082/api/userpreferences", preferences);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="container user-preferences">
@@ -6,28 +32,45 @@ export default function UserPreferences() {
           <div className="col s12"><h3> Let us know what you like </h3></div>
           <div className="col s6">
             <div className="row">
-              <form className="col s12" action="POST">
+              <form className="col s12" onSubmit={submitPreferences}>
                 <div className="row">
                   <div className="input-field col s6">
-                    <input id="first_name" type="text" className="validate" />
-                    <label className="active" for="first_name">Movie choice</label>
+                    <input
+                      id="movie"
+                      type="text"
+                      className="validate"
+                      value={movie}
+                      onChange={(e) => setMovie(e.target.value)}
+                    />
+                    <label className="active" htmlFor="movie">Movie choice</label>
                   </div>
                 </div>
                 <div className="row">
                   <div className="input-field col s6">
-                    <input id="last_name" type="text" className="validate" />
-                    <label for="last_name">Genre choice</label>
+                    <input
+                      id="genre"
+                      type="text"
+                      className="validate"
+                      value={genre}
+                      onChange={(e) => setGenre(e.target.value)}
+                    />
+                    <label htmlFor="genre">Genre choice</label>
                   </div>
                 </div>
                 <div className="row">
                   <div className="input-field col s6">
-                    <input id="last_name" type="text" className="validate" />
-                    <label for="last_name">Location</label>
+                    <input id="location" 
+                    type="text" 
+                    className="validate" 
+                    value={location} 
+                    onChange={(e) => setLocation(e.target.value)}/>
+                    <label htmlFor="location">Location</label>
                   </div>
                 </div>
                 <div>
-                  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
+                  <button className="btn waves-effect waves-light" type="submit" name="action">
+                    Submit
+                    <i className="material-icons right">send</i>
                   </button>
                 </div>
               </form>
