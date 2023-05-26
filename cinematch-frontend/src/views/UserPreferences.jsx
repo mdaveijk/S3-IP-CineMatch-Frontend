@@ -1,28 +1,21 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { addPreferences } from '../utils/postPreferencesApi'; 
 
 export default function UserPreferences() {
   const [movie, setMovie] = useState('');
   const [genre, setGenre] = useState('');
   const [location, setLocation] = useState('');
 
-  const submitPreferences = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const preferences = {
       userId: 2,
       preferences: [movie, genre],
-      // movie: movie,
-      // genre: genre,
       location: location
     };
 
-    try {
-      await axios.post("http://localhost:8082/api/userpreferences", preferences);
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
+    addPreferences(preferences);
   };
 
   return (
@@ -32,7 +25,7 @@ export default function UserPreferences() {
           <div className="col s12"><h3> Let us know what you like </h3></div>
           <div className="col s6">
             <div className="row">
-              <form className="col s12" onSubmit={submitPreferences}>
+              <form className="col s12" onSubmit={handleSubmit}>
                 <div className="row">
                   <div className="input-field col s6">
                     <input
@@ -59,11 +52,11 @@ export default function UserPreferences() {
                 </div>
                 <div className="row">
                   <div className="input-field col s6">
-                    <input id="location" 
-                    type="text" 
-                    className="validate" 
-                    value={location} 
-                    onChange={(e) => setLocation(e.target.value)}/>
+                    <input id="location"
+                      type="text"
+                      className="validate"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)} />
                     <label htmlFor="location">Location</label>
                   </div>
                 </div>
