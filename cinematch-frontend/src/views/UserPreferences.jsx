@@ -6,7 +6,7 @@ export default function UserPreferences() {
   const [genre, setGenre] = useState('');
   const [location, setLocation] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const preferences = {
@@ -14,8 +14,14 @@ export default function UserPreferences() {
       preferences: [movie, genre],
       location: location
     };
-
-    addPreferences(preferences);
+    try {
+      const response = await addPreferences(preferences);
+      console.log('Preferences added successfully');
+      // TODO: Update UI, display success message, navigate to another page, etc.
+    } catch (error) {
+      console.error('Error adding preferences:', error);
+      // TODO: Display error message to the user or take appropriate error-handling actions
+    }
   };
 
   return (
