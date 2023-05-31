@@ -7,10 +7,6 @@ body {
   background-color: black;
 }
 
-.sidenav {
-  background-color: black;
-}
-
 .find-matches {
   background-color: #EF212C;
 }
@@ -61,6 +57,14 @@ body {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+/* Set User Preferences */
+.container.user-preferences {
+  color: whitesmoke;
+}
+
+
+/* Potential matches */
 
 .profile-picture {
   width: 80px;
