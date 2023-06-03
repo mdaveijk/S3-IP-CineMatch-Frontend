@@ -15,7 +15,7 @@ export default function UserPreferences() {
       location: location
     };
     try {
-      const response = await addPreferences(preferences);
+      await addPreferences(preferences);
       console.log('Preferences added successfully');
       // TODO: Update UI, display success message, navigate to another page, etc.
     } catch (error) {
