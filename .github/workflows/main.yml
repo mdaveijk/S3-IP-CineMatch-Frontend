@@ -30,6 +30,7 @@ jobs:
       with:
         node-version: 16
         cache: 'npm'
+        cache-dependency-path: ./cinematch-frontend/package-lock.json
     - run: npm ci
       working-directory: ./cinematch-frontend
     - run: npm run build --if-present
@@ -80,7 +81,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./cinematch-frontend/Dockerfile
+          file: ./Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
