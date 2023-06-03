@@ -30,7 +30,7 @@ jobs:
       with:
         node-version: 16
         cache: 'npm'
-        cache-dependency-path: ./cinematch-frontend/package-lock.json
+        cache-dependency-path: ./cinematch-frontend/package.json
     - run: npm ci
       working-directory: ./cinematch-frontend
     - run: npm run build --if-present
