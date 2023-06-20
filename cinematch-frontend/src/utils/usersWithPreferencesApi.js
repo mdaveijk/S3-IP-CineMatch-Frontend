@@ -10,7 +10,8 @@ export function getUsersPreferences() {
   useEffect(() => {
     async function getUsersPreferences() {
       try {
-        const { data } = await axios.get("http://localhost:8082/api/userpreferences");
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const { data } = await axios.get(`${apiUrl}user-preferences-service/api/userpreferences`);
         setUserPreferences(data);
       } catch (error) {
         //handle errors

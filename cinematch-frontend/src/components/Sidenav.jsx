@@ -18,7 +18,7 @@ const Sidenav = () => {
               <img src="images/office.jpg" alt="Office Background" />
             </div>
             <Link to="/user">
-              <img className="circle" src="images/yuna.jpg" alt="User Avatar" />
+              <img className="circle" src="" alt="User Avatar" />
             </Link>
             <Link to="/name">
               <span className="white-text name">YOUR NAME</span>
