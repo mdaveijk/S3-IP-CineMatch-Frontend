@@ -5,15 +5,18 @@ import { getUsers } from './usersApi';
 export function getUsersPreferences() {
 
   const [userPreferences, setUserPreferences] = useState([]);
-  const userNames = getUsers(); // Get the userNames 
+  const userNames = getUsers(); 
 
   useEffect(() => {
     async function getUsersPreferences() {
       try {
-        const { data } = await axios.get("http://localhost:8082/api/userpreferences");
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const { data } = await axios.get(`${apiUrl}api/userpreferences`);
         setUserPreferences(data);
+        console.log("test", data);
       } catch (error) {
         //handle errors
+        console.log("some error", error);
       }
     }
 
@@ -21,15 +24,15 @@ export function getUsersPreferences() {
   }, []);
 
   const getUserPreferencesWithName = () => {
-    // find the corresponding username
-    function getUserName(userNames, userId) {
+    // find the corresponding displayname
+    function getDisplayName(userNames, userId) {
       const userName = userNames.find((userName) => userName.userId === userId);
       return userName ? userName.displayName : '';
     }
 
     return userPreferences.map((userPref) => ({
       ...userPref,
-      username: getUserName(userNames, userPref.userId),
+      username: getDisplayName(userNames, userPref.userId),
     }));
   };
 
