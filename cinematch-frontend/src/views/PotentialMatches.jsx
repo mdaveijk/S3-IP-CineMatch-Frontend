@@ -1,9 +1,16 @@
 import React from 'react';
 import PotentialMatchCard from './../components/PotentialMatchCard';
 import { getUsersPreferences } from '../utils/usersWithPreferencesApi';
+import { getUsers } from '../utils/usersApi';
 
 export default function PotentialMatches() {
   const userPreferences = getUsersPreferences();
+  const users = getUsers();
+
+  const getUserName = (userId) => {
+    const user = users.find((user) => user.id === userId);
+    return user ? user.displayName : '';
+  };
 
   return (
     <>
@@ -14,7 +21,7 @@ export default function PotentialMatches() {
             <PotentialMatchCard
               key={key}
               usermovie={userPref.preferences}
-              username={userPref.username}
+              username={getUserName(userPref.userId)}
               location={userPref.location}
               picture={userPref.profilePic}
             />
